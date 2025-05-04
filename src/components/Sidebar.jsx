@@ -1,6 +1,8 @@
 import React from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Sidebar = () => {
+  const { user, isAuthenticated, loginWithRedirect, isLoading } = useAuth0();
   const colors = [
     "bg-red-200",
     "bg-green-200",
@@ -11,6 +13,11 @@ const Sidebar = () => {
     "bg-blue-200",
     "bg-teal-200",
   ];
+
+  const handleLogin = () => {
+    loginWithRedirect();
+  };
+
   return (
     <div className="w-[300px] h-full px-4 py-2 rounded-xl bg-gray-100 flex flex-col gap-y-4 relative">
       {/* header section  */}
@@ -39,26 +46,25 @@ const Sidebar = () => {
         <h1 className="text-[14px] uppercase font-semibold">tasks</h1>
         <ul className="px-2 capitalize text-sm ">
           <li className="group px-2 py-1.5 hover:bg-gray-200 rounded-sm hover:text-black">
-            <i className="bi bi-chevron-right"></i>
-            <i className="bi bi-chevron-right -translate-5"></i>upcomming{" "}
+            <i className="bi bi-chevron-double-right mr-2"></i>upcomming{" "}
             <span className="text-[12px] font-semibold float-end px-1.5 bg-gray-200 rounded-sm group-hover:bg-white">
               {23}
             </span>
           </li>
           <li className="group px-2 py-1.5 hover:bg-gray-200 rounded-sm hover:text-black">
-            <i className="bi bi"></i>today{" "}
+            <i className="bi bi-list-task mr-2"></i>today{" "}
             <span className="text-[12px] font-semibold float-end px-1.5 bg-gray-200 rounded-sm group-hover:bg-white">
               {23}
             </span>
           </li>
           <li className="group px-2 py-1.5 hover:bg-gray-200 rounded-sm hover:text-black">
-            <i className="bi bi"></i>calender{" "}
+            <i class="bi bi-calendar3 mr-2"></i>calender{" "}
             <span className="text-[12px] font-semibold float-end px-1.5 bg-gray-200 rounded-sm group-hover:bg-white">
               {23}
             </span>
           </li>
           <li className="group px-2 py-1.5 hover:bg-gray-200 rounded-sm hover:text-black">
-            <i className="bi bi"></i>sticky wall{" "}
+            <i className="bi bi-clipboard-check mr-2"></i>sticky wall{" "}
             <span className="text-[12px] font-semibold float-end px-1.5 bg-gray-200 rounded-sm group-hover:bg-white">
               {23}
             </span>
@@ -71,25 +77,28 @@ const Sidebar = () => {
         <h1 className="text-[14px] uppercase font-semibold">lists</h1>
         <ul className="px-2 capitalize text-sm">
           <li className="group px-2 py-1.5 hover:bg-gray-200 rounded-sm hover:text-black">
-            <i className="bi bi"></i>upcomming{" "}
+            <i className="bi bi-square-fill text-[10px] text-rose-300 mr-2"></i>
+            upcomming{" "}
             <span className="text-[12px] font-semibold float-end px-1.5 bg-gray-200 rounded-sm group-hover:bg-white">
               {23}
             </span>
           </li>
           <li className="group px-2 py-1.5 hover:bg-gray-200 rounded-sm hover:text-black">
-            <i className="bi bi"></i>work{" "}
+            <i className="bi bi-square-fill text-[10px] text-purple-300 mr-2"></i>
+            work{" "}
             <span className="text-[12px] font-semibold float-end px-1.5 bg-gray-200 rounded-sm group-hover:bg-white">
               {23}
             </span>
           </li>
           <li className="group px-2 py-1.5 hover:bg-gray-200 rounded-sm hover:text-black">
-            <i className="bi bi"></i>list 1{" "}
+            <i className="bi bi-square-fill text-[10px] text-green-300 mr-2"></i>
+            list 1{" "}
             <span className="text-[12px] font-semibold float-end px-1.5 bg-gray-200 rounded-sm group-hover:bg-white">
               {23}
             </span>
           </li>
           <li className="group px-2 py-1.5  hover:bg-gray-200 rounded-sm hover:text-black flex items-center">
-            <i className="bi bi-plus-lg mr-1 "></i>
+            <i className="bi bi-plus-lg mr-2"></i>
             <span>add new list</span>
           </li>
         </ul>
@@ -126,16 +135,36 @@ const Sidebar = () => {
 
       {/* profile and settings  */}
       <div className="absolute bottom-3 left-4 flex items-center gap-x-5">
-        <div className="w-14 h-14 bg-gray-300 rounded-full  overflow-hidden"></div>
-        <div className="">
-          <p>name</p>
-          <p className="text-[12px] capitalize">
-            role:{" "}
-            <span className="mx-2 px-2 py-0.5 bg-green-200 rounded-sm">
-              {"user"}
-            </span>
-          </p>
-        </div>
+        {/* {JSON.stringify(user)} */}
+        {isAuthenticated ? (
+          <>
+            <div className="w-14 h-14 bg-gray-300 rounded-full  overflow-hidden">
+              <img
+                src={user?.picture || "/logo.png"}
+                alt=""
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="">
+              <p>{user.name || "name"}</p>
+              <p className="text-[12px] capitalize">
+                role:{" "}
+                <span className="mx-2 px-2 py-0.5 bg-green-200 rounded-sm">
+                  {"user"}
+                </span>
+              </p>
+            </div>
+          </>
+        ) : (
+          <div>
+            <button
+              onClick={() => handleLogin()}
+              className="px-3 py-1 border rounded-sm capitalize  hover:bg-black hover:text-white cursor-pointer"
+            >
+              <i className="bi bi-box-arrow-in-right pr-3 text-xl"></i>Sign in
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
