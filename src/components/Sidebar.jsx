@@ -1,0 +1,141 @@
+import React from "react";
+
+const Sidebar = () => {
+  const colors = [
+    "bg-red-200",
+    "bg-green-200",
+    "bg-orange-200",
+    // "bg-zinc-200",
+    "bg-purple-200",
+    "bg-pink-200",
+    "bg-blue-200",
+    "bg-teal-200",
+  ];
+  return (
+    <div className="w-[300px] h-full px-4 py-2 rounded-xl bg-gray-100 flex flex-col gap-y-4 relative">
+      {/* header section  */}
+      <div className="w-full  text-xl font-semibold capitalize ">
+        <span className="">menu</span>
+        <span className="float-end text-gray-500">
+          <i className="bi bi-list"></i>
+        </span>
+      </div>
+
+      {/* search section  */}
+      <div className=" h-8 text-gray-500 rounded-sm border border-gray-300 flex items-center">
+        <i className="bi bi-search px-2"></i>
+        <input
+          type="text"
+          placeholder="Search"
+          className="flex-1 h-full px-2"
+        />
+      </div>
+
+      {/* types of task section  */}
+      <div className="">
+        <h1 className="text-[14px] uppercase font-semibold">tasks</h1>
+        <ul className="px-2 capitalize text-sm ">
+          <li className="group px-2 py-1.5 hover:bg-gray-200 rounded-sm hover:text-black">
+            <i className="bi bi-chevron-right"></i>
+            <i className="bi bi-chevron-right -translate-5"></i>upcomming{" "}
+            <span className="text-[12px] font-semibold float-end px-1.5 bg-gray-200 rounded-sm group-hover:bg-white">
+              {23}
+            </span>
+          </li>
+          <li className="group px-2 py-1.5 hover:bg-gray-200 rounded-sm hover:text-black">
+            <i className="bi bi"></i>today{" "}
+            <span className="text-[12px] font-semibold float-end px-1.5 bg-gray-200 rounded-sm group-hover:bg-white">
+              {23}
+            </span>
+          </li>
+          <li className="group px-2 py-1.5 hover:bg-gray-200 rounded-sm hover:text-black">
+            <i className="bi bi"></i>calender{" "}
+            <span className="text-[12px] font-semibold float-end px-1.5 bg-gray-200 rounded-sm group-hover:bg-white">
+              {23}
+            </span>
+          </li>
+          <li className="group px-2 py-1.5 hover:bg-gray-200 rounded-sm hover:text-black">
+            <i className="bi bi"></i>sticky wall{" "}
+            <span className="text-[12px] font-semibold float-end px-1.5 bg-gray-200 rounded-sm group-hover:bg-white">
+              {23}
+            </span>
+          </li>
+        </ul>
+      </div>
+
+      {/* types of work section  */}
+      <div>
+        <h1 className="text-[14px] uppercase font-semibold">lists</h1>
+        <ul className="px-2 capitalize text-sm">
+          <li className="group px-2 py-1.5 hover:bg-gray-200 rounded-sm hover:text-black">
+            <i className="bi bi"></i>upcomming{" "}
+            <span className="text-[12px] font-semibold float-end px-1.5 bg-gray-200 rounded-sm group-hover:bg-white">
+              {23}
+            </span>
+          </li>
+          <li className="group px-2 py-1.5 hover:bg-gray-200 rounded-sm hover:text-black">
+            <i className="bi bi"></i>work{" "}
+            <span className="text-[12px] font-semibold float-end px-1.5 bg-gray-200 rounded-sm group-hover:bg-white">
+              {23}
+            </span>
+          </li>
+          <li className="group px-2 py-1.5 hover:bg-gray-200 rounded-sm hover:text-black">
+            <i className="bi bi"></i>list 1{" "}
+            <span className="text-[12px] font-semibold float-end px-1.5 bg-gray-200 rounded-sm group-hover:bg-white">
+              {23}
+            </span>
+          </li>
+          <li className="group px-2 py-1.5  hover:bg-gray-200 rounded-sm hover:text-black flex items-center">
+            <i className="bi bi-plus-lg mr-1 "></i>
+            <span>add new list</span>
+          </li>
+        </ul>
+      </div>
+
+      {/* tag section  */}
+      <div>
+        <h1 className="text-[14px] uppercase font-semibold">tags</h1>
+        <ul className="px-2 py-1 capitalize text-sm flex gap-2 flex-wrap">
+          <li className="w-fit px-2 py-1 bg-gray-200 rounded-sm">
+            <span>tag 1 tag</span>
+          </li>
+          <li className="w-fit px-2 py-1 bg-gray-200 rounded-sm">
+            <span>tags 2</span>
+          </li>
+          <li className="w-fit px-2 py-1 bg-gray-200 rounded-sm">
+            <span>tag 1</span>
+          </li>
+          <li className="w-fit px-2 py-1 bg-gray-200 rounded-sm">
+            <span>tags 2</span>
+          </li>
+          <li className="w-fit px-2 py-1 bg-gray-200 rounded-sm">
+            <span>tag 1</span>
+          </li>
+          <li className="w-fit px-2 py-1 bg-gray-200 rounded-sm">
+            <span>tags 2</span>
+          </li>
+          <li className="w-fit px-2 py-1 bg-gray-200 rounded-sm">
+            <i className="bi bi-plus"></i>
+            <span>add tags</span>
+          </li>
+        </ul>
+      </div>
+
+      {/* profile and settings  */}
+      <div className="absolute bottom-3 left-4 flex items-center gap-x-5">
+        <div className="w-14 h-14 bg-gray-300 rounded-full  overflow-hidden"></div>
+        <div className="">
+          <p>name</p>
+          <p className="text-[12px] capitalize">
+            role:{" "}
+            <span className="mx-2 px-2 py-0.5 bg-green-200 rounded-sm">
+              {"user"}
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Sidebar;
