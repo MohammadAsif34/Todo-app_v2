@@ -1,5 +1,6 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useSelector } from "react-redux";
 
 const Sidebar = () => {
   const { user, isAuthenticated, loginWithRedirect, isLoading } = useAuth0();
@@ -14,6 +15,7 @@ const Sidebar = () => {
     "bg-teal-200",
   ];
 
+  const todo = useSelector((state) => state.todos);
   const handleLogin = () => {
     loginWithRedirect();
   };
@@ -58,7 +60,7 @@ const Sidebar = () => {
             </span>
           </li>
           <li className="group px-2 py-1.5 hover:bg-gray-200 rounded-sm hover:text-black">
-            <i class="bi bi-calendar3 mr-2"></i>calender{" "}
+            <i className="bi bi-calendar3 mr-2"></i>calender{" "}
             <span className="text-[12px] font-semibold float-end px-1.5 bg-gray-200 rounded-sm group-hover:bg-white">
               {23}
             </span>
@@ -66,7 +68,7 @@ const Sidebar = () => {
           <li className="group px-2 py-1.5 hover:bg-gray-200 rounded-sm hover:text-black">
             <i className="bi bi-clipboard-check mr-2"></i>sticky wall{" "}
             <span className="text-[12px] font-semibold float-end px-1.5 bg-gray-200 rounded-sm group-hover:bg-white">
-              {23}
+              {todo.length > 0 && todo.length}
             </span>
           </li>
         </ul>
