@@ -14,9 +14,12 @@ const Sidebar = () => {
   return (
     <div className="w-[300px] h-full px-4 py-2 rounded-xl bg-gray-100 flex flex-col gap-y-4 relative">
       {/* header section  */}
-      <div className="w-full  text-xl font-semibold capitalize ">
-        <span className="">menu</span>
-        <span className="float-end text-gray-500">
+      <div className="w-full flex justify-between items-center  text-xl font-semibold capitalize ">
+        <div className="flex items-center">
+          <img src="/logo.png" alt="" className="w-8 cursor-pointer" />
+          <span className="">menu</span>
+        </div>
+        <span className=" text-gray-500">
           <i className="bi bi-list"></i>
         </span>
       </div>
