@@ -1,6 +1,7 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleCurrSection } from "../../appState/toggleSlice";
 
 const Sidebar = () => {
   const { user, isAuthenticated, loginWithRedirect, isLoading } = useAuth0();
@@ -16,8 +17,12 @@ const Sidebar = () => {
   ];
 
   const todo = useSelector((state) => state.todos);
+  const dispatch = useDispatch();
   const handleLogin = () => {
     loginWithRedirect();
+  };
+  const handleCurrSec = (name) => {
+    dispatch(toggleCurrSection(name));
   };
 
   return (
@@ -47,25 +52,37 @@ const Sidebar = () => {
       <div className="">
         <h1 className="text-[14px] uppercase font-semibold">tasks</h1>
         <ul className="px-2 capitalize text-sm ">
-          <li className="group px-2 py-1.5 hover:bg-gray-200 rounded-sm hover:text-black">
+          <li
+            onClick={() => handleCurrSec("upcomming")}
+            className="group px-2 py-1.5 hover:bg-gray-200 rounded-sm hover:text-black"
+          >
             <i className="bi bi-chevron-double-right mr-2"></i>upcomming{" "}
             <span className="text-[12px] font-semibold float-end px-1.5 bg-gray-200 rounded-sm group-hover:bg-white">
               {23}
             </span>
           </li>
-          <li className="group px-2 py-1.5 hover:bg-gray-200 rounded-sm hover:text-black">
+          <li
+            onClick={() => handleCurrSec("today")}
+            className="group px-2 py-1.5 hover:bg-gray-200 rounded-sm hover:text-black"
+          >
             <i className="bi bi-list-task mr-2"></i>today{" "}
             <span className="text-[12px] font-semibold float-end px-1.5 bg-gray-200 rounded-sm group-hover:bg-white">
               {23}
             </span>
           </li>
-          <li className="group px-2 py-1.5 hover:bg-gray-200 rounded-sm hover:text-black">
-            <i className="bi bi-calendar3 mr-2"></i>calender{" "}
+          <li
+            onClick={() => handleCurrSec("calendar")}
+            className="group px-2 py-1.5 hover:bg-gray-200 rounded-sm hover:text-black"
+          >
+            <i className="bi bi-calendar3 mr-2"></i>calendar{" "}
             <span className="text-[12px] font-semibold float-end px-1.5 bg-gray-200 rounded-sm group-hover:bg-white">
               {23}
             </span>
           </li>
-          <li className="group px-2 py-1.5 hover:bg-gray-200 rounded-sm hover:text-black">
+          <li
+            onClick={() => handleCurrSec("sticky-wall")}
+            className="group px-2 py-1.5 hover:bg-gray-200 rounded-sm hover:text-black"
+          >
             <i className="bi bi-clipboard-check mr-2"></i>sticky wall{" "}
             <span className="text-[12px] font-semibold float-end px-1.5 bg-gray-200 rounded-sm group-hover:bg-white">
               {todo.length > 0 && todo.length}
