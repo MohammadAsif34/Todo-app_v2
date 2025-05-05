@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleCurrSection } from "../../appState/toggleSlice";
 
 const Sidebar = () => {
-  const { user, isAuthenticated, loginWithRedirect, isLoading } = useAuth0();
+  const [isProfile, setIsProfile] = useState(false);
+  const { user, isAuthenticated, loginWithRedirect, isLoading, logout } =
+    useAuth0();
   const colors = [
     "bg-red-200",
     "bg-green-200",
@@ -157,15 +159,18 @@ const Sidebar = () => {
         {/* {JSON.stringify(user)} */}
         {isAuthenticated ? (
           <>
-            <div className="w-14 h-14 bg-gray-300 rounded-full  overflow-hidden">
+            <div
+              className="w-12 h-12 bg-gray-300 rounded-full cursor-pointer overflow-hidden"
+              onClick={() => setIsProfile((prev) => !prev)}
+            >
               <img
                 src={user?.picture || "/logo.png"}
                 alt=""
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="">
-              <p>{user.name || "name"}</p>
+            <div className=" cursor-default">
+              <p>{user?.name || "Name"}</p>
               <p className="text-[12px] capitalize">
                 role:{" "}
                 <span className="mx-2 px-2 py-0.5 bg-green-200 rounded-sm">
@@ -173,6 +178,35 @@ const Sidebar = () => {
                 </span>
               </p>
             </div>
+            {isProfile && (
+              <div className="w-48 h-fit bg-white border border-gray-300 rounded-lg absolute bottom-14 left-0 shadow-lg">
+                <ul className="p-2 capitalize text-gray-500 text-sm">
+                  <li className="px-2 py-1 cursor-pointer hover:bg-gray-100 rounded-sm hover:text-black">
+                    <i className="bi bi-house-fill mr-2"></i>
+                    home
+                  </li>
+                  <li className="px-2 py-1 cursor-pointer hover:bg-gray-100 rounded-sm hover:text-black">
+                    <i className="bi bi-person-vcard-fill mr-2"></i>
+                    dashboard
+                  </li>
+                  <li className="px-2 py-1 cursor-pointer hover:bg-gray-100 rounded-sm hover:text-black">
+                    <i className="bi bi-person-fill mr-2"></i>
+                    profile
+                  </li>
+                  <li className="px-2 py-1 cursor-pointer hover:bg-gray-100 rounded-sm hover:text-black">
+                    <i className="bi bi-gear-fill mr-2"></i>
+                    setting
+                  </li>
+                  <li
+                    onClick={() => logout()}
+                    className="px-2 py-1 cursor-pointer hover:bg-gray-100 rounded-sm hover:text-black"
+                  >
+                    <i className="bi bi-box-arrow-left mr-2"></i>
+                    logout
+                  </li>
+                </ul>
+              </div>
+            )}
           </>
         ) : (
           <div>
