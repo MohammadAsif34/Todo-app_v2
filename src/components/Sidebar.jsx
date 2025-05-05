@@ -11,7 +11,8 @@ const Sidebar = () => {
     loginWithRedirect,
     isLoading,
     logout,
-    loginWithPopup,
+
+    // loginWithPopup,
   } = useAuth0();
   const colors = [
     "bg-red-200",
@@ -27,8 +28,8 @@ const Sidebar = () => {
   const todo = useSelector((state) => state.todos);
   const dispatch = useDispatch();
   const handleLogin = () => {
-    // loginWithRedirect();
-    loginWithPopup();
+    loginWithRedirect();
+    // loginWithPopup();
   };
   const handleCurrSec = (name) => {
     dispatch(toggleCurrSection(name));

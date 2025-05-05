@@ -9,7 +9,7 @@ const Upcomming = () => {
         <div className="text-4xl font-bold capitalize ">upcomming </div>
       </div>
 
-      <div className="h-[calc(100vh-90px)] flex flex-col gap-y-5">
+      <div className="h-[calc(100vh-90px)] flex flex-col gap-y-3">
         {/* Today note  */}
         <div className="flex-1 w-full p-1 border border-gray-300 rounded-md">
           <DayCard title={"today"} />
