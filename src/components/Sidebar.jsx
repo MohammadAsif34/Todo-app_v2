@@ -58,7 +58,7 @@ const Sidebar = () => {
           >
             <i className="bi bi-chevron-double-right mr-2"></i>upcomming{" "}
             <span className="text-[12px] font-semibold float-end px-1.5 bg-gray-200 rounded-sm group-hover:bg-white">
-              {23}
+              {todo.tasks.length > 0 && todo.tasks.length}
             </span>
           </li>
           <li
@@ -85,7 +85,7 @@ const Sidebar = () => {
           >
             <i className="bi bi-clipboard-check mr-2"></i>sticky wall{" "}
             <span className="text-[12px] font-semibold float-end px-1.5 bg-gray-200 rounded-sm group-hover:bg-white">
-              {todo.length > 0 && todo.length}
+              {todo.stickyNote.length > 0 && todo.stickyNote.length}
             </span>
           </li>
         </ul>

@@ -37,8 +37,10 @@ const StickyWall = () => {
       <div className="mb-4 flex justify-between">
         <div className="text-4xl font-bold capitalize ">
           sticky wall{" "}
-          {todo.length > 0 && (
-            <span className="ml-5 text-xl font-normal">{todo.length}</span>
+          {todo.stickyNote.length > 0 && (
+            <span className="ml-5 text-xl font-normal">
+              {todo.stickyNote.length}
+            </span>
           )}
         </div>
         <div className="mt-2">
@@ -52,13 +54,13 @@ const StickyWall = () => {
         </div>
       </div>
 
-      <div className="h-[calc(100vh-90px)] p-4 border border-gray-300 rounded-md flex flex-wrap justify-center gap-x-3 gap-y-4 overflow-y-auto">
-        {todo.length == 0 && (
+      <div className="h-[calc(100vh-90px)] p-4 border border-gray-300 rounded-md flex flex-wrap justify-centerr items-center gap-3 overflow-y-auto">
+        {todo.stickyNote.length == 0 && (
           <div className="w-full h-full  flex justify-center items-center">
             <img src="/emptyNote.png" alt="" className="w-56 opacity-70" />
           </div>
         )}
-        {todo.map((item, idx) => (
+        {todo?.stickyNote?.map((item, idx) => (
           <div
             className={`min-w-48 max-w-1/5 h-56 px-3 py-2 border-gray-300 rounded-md shadow flex-grow-1 ${
               colors[idx % colors.length]
