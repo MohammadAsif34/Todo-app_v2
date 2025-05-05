@@ -5,8 +5,14 @@ import { toggleCurrSection } from "../../appState/toggleSlice";
 
 const Sidebar = () => {
   const [isProfile, setIsProfile] = useState(false);
-  const { user, isAuthenticated, loginWithRedirect, isLoading, logout } =
-    useAuth0();
+  const {
+    user,
+    isAuthenticated,
+    loginWithRedirect,
+    isLoading,
+    logout,
+    loginWithPopup,
+  } = useAuth0();
   const colors = [
     "bg-red-200",
     "bg-green-200",
@@ -21,7 +27,8 @@ const Sidebar = () => {
   const todo = useSelector((state) => state.todos);
   const dispatch = useDispatch();
   const handleLogin = () => {
-    loginWithRedirect();
+    // loginWithRedirect();
+    loginWithPopup();
   };
   const handleCurrSec = (name) => {
     dispatch(toggleCurrSection(name));
