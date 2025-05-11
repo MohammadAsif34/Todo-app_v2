@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const toggleSlice = createSlice({
   name: "toggles",
-  initialState: { noteModal: false, currSection: "upcomming" },
+  initialState: { noteModal: false, currSection: "dashboard" },
   reducers: {
     toggleNoteModal: (state) => {
       state.noteModal = !state.noteModal;
